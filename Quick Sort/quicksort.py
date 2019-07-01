@@ -5,6 +5,7 @@ all elements to its left are lesser and to the right are greater to it.
 Also once the partiotion is done we will recursively call the program to partition the list and sort
 
 """
+import random
 
 def partitioning(arr,p,q):
 
@@ -36,8 +37,23 @@ def quick_sort(arr, p, r):
 
     return arr
 
+def randomized_qs(arr, p, r):
 
-# user_input = [4,0,1,5,2,6]
-user_input = [5,4,9,6,3,5]
+    if p < r:
+
+        i = random.randint(p,r-1)
+        temp = arr[i]
+        arr[i] = arr[r-1]
+        arr[r-1] = temp
+        q = partitioning(arr,p,r)
+        quick_sort(arr,p,q)
+        quick_sort(arr,q+1,r)
+
+    return arr
+
+
+user_input = [4,0,1,5,2,6]
+user_input_a = [5,4,9,6,3,5]
 
 print(quick_sort(user_input,0,len(user_input)))
+print(randomized_qs(user_input_a,0,len(user_input_a)))
